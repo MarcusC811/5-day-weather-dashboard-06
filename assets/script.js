@@ -13,10 +13,18 @@ $('#cityInput').autocomplete({
     source: availableTags
 });
 var APIKey = '8e7dfd8a11ead85b1484cbd7aad925cc';
-const cityWeather = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput.value + "&appid=" + APIKey;
+const cityWeather = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput.value + "&cnt=3&appid=" + APIKey;
 const city = cityInput.value;
 
+var cityGeo = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput.value+ "&limit=5&appid=" + APIKey;
+
+
+
+
+
 function getInfo() {
+  console.log(cityGeo);
+
 
   fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput.value + "&appid=" + APIKey)
     .then(function (response) {
