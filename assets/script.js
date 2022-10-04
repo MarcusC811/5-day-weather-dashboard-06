@@ -1,3 +1,6 @@
+// Geo
+// api.openweathermap.org/data/2.5/forecast?q={city name},{state code},{country code}&appid={API key}
+
 var sameTempSpan = document.getElementById("same-day");
 var cityInput = document.querySelector("#cityInput");
 var searchBtn = document.getElementById("searchBtn");
