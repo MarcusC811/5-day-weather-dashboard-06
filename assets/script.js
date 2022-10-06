@@ -53,19 +53,29 @@ function displayWeather (responseCity, cityLat, cityLog) {
     })
     .then(function (data) {
       console.log(data)
+      // 1st Day Card
       var Day0Temp = Math.floor(((data.daily[0].feels_like.day) - 273.15) * 9/5 + 32);
-      // var unixDate0 = ((data.daily[0].dt) * 1000).toLocaleDateString("en-US");
       sameTempSpan.innerText = Day0Temp + '°F';
-      // date0span.innerText = unixDate0
-      // console.log(((data.daily[0].dt) * 1000).toLocaleDateString("en-US"));
+
+      // 2nd Day Card
       var Day1Temp = Math.floor(((data.daily[1].feels_like.day) - 273.15) * 9/5 + 32);
       nextdaySpan.innerText = Day1Temp + '°F';
+      cityFill1.innerText = "Wind: " + data.daily[1].wind_speed + "MPH";
+
+      // 3rd Day Card
       var Day2Temp = Math.floor(((data.daily[2].feels_like.day) - 273.15) * 9/5 + 32);
       followdaySpan.innerText = Day2Temp + '°F';
+      cityFill2.innerText = "Wind: " + data.daily[2].wind_speed + "MPH";
+
+      // 4th Day Card
       var Day3Temp = Math.floor(((data.daily[3].feels_like.day) - 273.15) * 9/5 + 32);
       followdaySpan2.innerText = Day3Temp + '°F';
+      cityFill3.innerText = "Wind: " + data.daily[3].wind_speed + "MPH";
+
+      // 5th Day Card
       var Day4Temp = Math.floor(((data.daily[4].feels_like.day) - 273.15) * 9/5 + 32);
       followdaySpan3.innerText = Day4Temp + '°F';
+      cityFill4.innerText = "Wind: " + data.daily[4].wind_speed + "MPH";
       }
     );
   
