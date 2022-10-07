@@ -21,7 +21,7 @@ const city = cityInput.value;
 var cityGeo = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput.value+ "&limit=5&appid=" + APIKey;
 
 function getInfo() {
-  fetch("http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput.value + "&appid=" + APIKey)
+  fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput.value + "&appid=" + APIKey)
     .then(function (response) {
       if(!response.ok) {
         alert("Couldn't find that city, Please Try Again")
