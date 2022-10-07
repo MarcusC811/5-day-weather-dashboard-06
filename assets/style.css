@@ -1,0 +1,16 @@
+body {
+    background-color: cornflowerblue;
+}
+
+header {
+    height: 125px;
+    align-items: center;
+}
+
+.justify-content-between {
+    justify-content: space-around;
+}
+
+.mb-0 {
+    color: white;
+}
