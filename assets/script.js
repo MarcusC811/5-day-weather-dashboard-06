@@ -11,6 +11,7 @@ var cityFill2 = document.getElementById("city-text2");
 var cityFill3 = document.getElementById("city-text3");
 var cityFill4 = document.getElementById("city-text4");
 var date0span = document.querySelector("date0");
+var hisIndex = 0;
 var APIKey = '8e7dfd8a11ead85b1484cbd7aad925cc';
 var APIKey3 = '87c21d5655399232649628c513cca2e0';
 
@@ -44,8 +45,10 @@ function displayWeather (responseCity, cityLat, cityLog) {
     })
     .then(function (data) {
       console.log(data)
-      var historyBtn = $("<button class='hisBtn'>" + responseCity + "</button>");
+      var historyBtn = $("<button data-city=" + responseCity + "class='hisBtn'>" + responseCity + "</button>");
       $('#searchHistory').append(historyBtn);
+      hisStore (hisIndex, responseCity);
+      hisIndex++;
       // 1st Day Card
       var Day0Temp = Math.floor(((data.daily[0].feels_like.day) - 273.15) * 9/5 + 32);
       var dateString0 = moment.unix(data.daily[0].dt).format("MM/DD/YYYY");
@@ -90,14 +93,19 @@ function displayWeather (responseCity, cityLat, cityLog) {
       $("#pic4").attr( "src", "https://openweathermap.org/img/wn/" + wCode4 + "@2x.png");
       followdaySpan3.innerText = Day4Temp + '°F';
       cityFill4.innerText = "Wind: " + data.daily[4].wind_speed + "MPH - " + "Humidity: " + humPerc4 + "% " + dateString4;
+      $(".hisBtn").on("click", test);
       }
     );
 }
 
-function test () {
-  console.log("success");
+function test (event) {
+  
+}
+
+function hisStore (hisIndex, responseCity) {
+  localStorage.setItem("city"+hisIndex, responseCity)
 }
 
 searchBtn.addEventListener("click", getInfo)
-$(".hisBtn").on("click", test);
+
 // "https://openweathermap.org/img/wn/" + wCode0 + "@2x.png";
