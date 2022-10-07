@@ -11,18 +11,9 @@ var cityFill2 = document.getElementById("city-text2");
 var cityFill3 = document.getElementById("city-text3");
 var cityFill4 = document.getElementById("city-text4");
 var date0span = document.querySelector("date0");
-var availableTags = [
-    "Angier",
-    "Fuquay-Varina",
-    "Raleigh"
-  ];
-var listHistory = document.getElementsByClassName("ui-helper-hidden-accessible");
-
-$('#cityInput').autocomplete({
-    source: availableTags
-});
 var APIKey = '8e7dfd8a11ead85b1484cbd7aad925cc';
 var APIKey3 = '87c21d5655399232649628c513cca2e0';
+
 const cityWeather = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput.value + "&cnt=3&appid=" + APIKey;
 const city = cityInput.value;
 
@@ -53,6 +44,8 @@ function displayWeather (responseCity, cityLat, cityLog) {
     })
     .then(function (data) {
       console.log(data)
+      var historyBtn = $("<button class='hisBtn'>" + responseCity + "</button>");
+      $('#searchHistory').append(historyBtn);
       // 1st Day Card
       var Day0Temp = Math.floor(((data.daily[0].feels_like.day) - 273.15) * 9/5 + 32);
       var dateString0 = moment.unix(data.daily[0].dt).format("MM/DD/YYYY");
@@ -99,10 +92,12 @@ function displayWeather (responseCity, cityLat, cityLog) {
       cityFill4.innerText = "Wind: " + data.daily[4].wind_speed + "MPH - " + "Humidity: " + humPerc4 + "% " + dateString4;
       }
     );
-  
-  
-  cityFill.innerText = responseCity;
+}
+
+function test () {
+  console.log("success");
 }
 
 searchBtn.addEventListener("click", getInfo)
+$(".hisBtn").on("click", test);
 // "https://openweathermap.org/img/wn/" + wCode0 + "@2x.png";
