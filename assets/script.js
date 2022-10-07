@@ -57,6 +57,8 @@ function displayWeather (responseCity, cityLat, cityLog) {
       var Day0Temp = Math.floor(((data.daily[0].feels_like.day) - 273.15) * 9/5 + 32);
       var dateString0 = moment.unix(data.daily[0].dt).format("MM/DD/YYYY");
       var humPerc0 = data.daily[0].humidity;
+      var wCode0 = data.daily[0].weather[0].icon;
+      $("#pic0").attr( "src", "https://openweathermap.org/img/wn/" + wCode0 + "@2x.png");
       sameTempSpan.innerText = Day0Temp + '°F';
       cityFill.innerText = responseCity + " Wind: " + data.daily[0].wind_speed + "MPH - " + "Humidity: " + humPerc0 + "% " +  dateString0;
 
@@ -64,6 +66,8 @@ function displayWeather (responseCity, cityLat, cityLog) {
       var Day1Temp = Math.floor(((data.daily[1].feels_like.day) - 273.15) * 9/5 + 32);
       var dateString1 = moment.unix(data.daily[1].dt).format("MM/DD/YYYY");
       var humPerc1 = data.daily[1].humidity;
+      var wCode1 = data.daily[1].weather[0].icon;
+      $("#pic1").attr( "src", "https://openweathermap.org/img/wn/" + wCode1 + "@2x.png");
       nextdaySpan.innerText = Day1Temp + '°F';
       cityFill1.innerText = "Wind: " + data.daily[1].wind_speed + "MPH - " + "Humidity: " + humPerc1 + "% " + dateString1;
 
@@ -71,6 +75,8 @@ function displayWeather (responseCity, cityLat, cityLog) {
       var Day2Temp = Math.floor(((data.daily[2].feels_like.day) - 273.15) * 9/5 + 32);
       var dateString2 = moment.unix(data.daily[2].dt).format("MM/DD/YYYY");
       var humPerc2 = data.daily[2].humidity;
+      var wCode2 = data.daily[2].weather[0].icon;
+      $("#pic2").attr( "src", "https://openweathermap.org/img/wn/" + wCode2 + "@2x.png");
       followdaySpan.innerText = Day2Temp + '°F';
       cityFill2.innerText = "Wind: " + data.daily[2].wind_speed + "MPH - " + "Humidity: " + humPerc2 + "% " + dateString2;
 
@@ -78,6 +84,8 @@ function displayWeather (responseCity, cityLat, cityLog) {
       var Day3Temp = Math.floor(((data.daily[3].feels_like.day) - 273.15) * 9/5 + 32);
       var dateString3 = moment.unix(data.daily[3].dt).format("MM/DD/YYYY");
       var humPerc3 = data.daily[3].humidity;
+      var wCode3 = data.daily[3].weather[0].icon;
+      $("#pic3").attr( "src", "https://openweathermap.org/img/wn/" + wCode3 + "@2x.png");
       followdaySpan2.innerText = Day3Temp + '°F';
       cityFill3.innerText = "Wind: " + data.daily[3].wind_speed + "MPH - " + "Humidity: " + humPerc3 + "% " + dateString3;
 
@@ -85,6 +93,8 @@ function displayWeather (responseCity, cityLat, cityLog) {
       var Day4Temp = Math.floor(((data.daily[4].feels_like.day) - 273.15) * 9/5 + 32);
       var dateString4 = moment.unix(data.daily[4].dt).format("MM/DD/YYYY");
       var humPerc4 = data.daily[4].humidity;
+      var wCode4 = data.daily[4].weather[0].icon;
+      $("#pic4").attr( "src", "https://openweathermap.org/img/wn/" + wCode4 + "@2x.png");
       followdaySpan3.innerText = Day4Temp + '°F';
       cityFill4.innerText = "Wind: " + data.daily[4].wind_speed + "MPH - " + "Humidity: " + humPerc4 + "% " + dateString4;
       }
@@ -95,4 +105,4 @@ function displayWeather (responseCity, cityLat, cityLog) {
 }
 
 searchBtn.addEventListener("click", getInfo)
-// var dateString = moment.unix(value).format("MM/DD/YYYY");
+// "https://openweathermap.org/img/wn/" + wCode0 + "@2x.png";
