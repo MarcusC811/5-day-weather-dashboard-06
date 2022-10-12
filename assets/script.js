@@ -16,7 +16,7 @@ var APIKey = '8e7dfd8a11ead85b1484cbd7aad925cc';
 var APIKey3 = '87c21d5655399232649628c513cca2e0';
 
 const cityWeather = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput.value + "&cnt=3&appid=" + APIKey;
-const city = cityInput.value;
+var cityIn = cityInput.value;
 
 var cityGeo = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityInput.value+ "&limit=5&appid=" + APIKey;
 
@@ -45,7 +45,7 @@ function displayWeather (responseCity, cityLat, cityLog) {
     })
     .then(function (data) {
       console.log(data)
-      var historyBtn = $("<button data-city=" + responseCity + "class='hisBtn'>" + responseCity + "</button>");
+      var historyBtn = $("<button class='hisBtn'>" + responseCity + "</button>");
       $('#searchHistory').append(historyBtn);
       hisStore (hisIndex, responseCity);
       hisIndex++;
@@ -99,13 +99,38 @@ function displayWeather (responseCity, cityLat, cityLog) {
 }
 
 function test (event) {
-  
+  var cityHistory = event.target.innerText;
+  fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + cityHistory + "&appid=" + APIKey)
+    .then(function (response) {
+      if(!response.ok) {
+        alert("Couldn't find that city, Please Try Again")
+        return;
+      }
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data)
+      var responseCity = data.city.name;
+      var cityLat = data.city.coord.lat;
+      var cityLog = data.city.coord.lon;
+      displayWeather(responseCity, cityLat, cityLog)
+      });
 }
 
 function hisStore (hisIndex, responseCity) {
-  localStorage.setItem("city"+hisIndex, responseCity)
+  localStorage.setItem(responseCity, responseCity)
 }
 
 searchBtn.addEventListener("click", getInfo)
 
-// "https://openweathermap.org/img/wn/" + wCode0 + "@2x.png";
+// // // Delegate event listener to the parent element, <div id="buttons">
+// buttonListEl.on('click', '.letter-button', function (event) {
+//   var displayLetterEl = $('<div>');
+
+//   displayLetterEl.addClass('letter');
+
+//   // get letter from clicked letter button's `data-letter` attribute and use it for display
+//   displayLetterEl.text($(event.target).attr('data-letter'));
+//   displayEl.append(displayLetterEl);
+// });
+
